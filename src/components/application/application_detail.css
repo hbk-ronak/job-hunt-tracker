@@ -190,16 +190,22 @@
 
   .modal-header {
     padding: 1.5rem;
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .modal-header h2 {
     font-size: 1.5rem;
+    padding-right: 0.5rem;
   }
 
   .position {
     font-size: 1rem;
+  }
+
+  .btn-close {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    font-size: 1.75rem;
   }
 
   .modal-body {
@@ -228,6 +234,12 @@
 
   .position {
     font-size: 0.9375rem;
+  }
+
+  .btn-close {
+    width: 32px;
+    height: 32px;
+    font-size: 1.5rem;
   }
 
   .modal-body {
