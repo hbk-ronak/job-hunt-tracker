@@ -1,0 +1,69 @@
+# Cursor Rules
+
+## Tech Stack
+- **Framework**: Svelte
+- **Language**: TypeScript (strict mode)
+- **Styling**: Separate CSS files
+- **Templates**: Jinja2 template files
+
+## Core Principles
+
+### 1. Separation of Concerns
+- One responsibility per file
+- One responsibility per class/function
+- HTML/Markup in `.jinja` template files only
+- CSS in separate `.css` files
+- TypeScript in `.ts` files
+- No `<script>` tags unless explicitly required
+
+### 2. Type Definitions
+- Each object type gets its own file
+- One interface/type per file
+- File naming: `{TypeName}.ts`
+- Strict typing - no `any`
+
+### 3. Code Quality
+- **DRY**: Don't repeat yourself
+- **YAGNI**: Build only what's needed now
+- No JavaScript idioms - explicit, readable code only
+- Self-documenting variable names
+- Small functions - one purpose only
+- No premature optimization
+
+### 4. Project Structure
+- Professional organization
+- Clear hierarchy
+- Logical grouping by concern
+- No implementation details in structure
+
+### 5. Documentation
+- **README.md only** contains:
+  - What the project is
+  - How to install dependencies
+  - How to make changes
+- No verbose component explanations
+- No code path documentation
+- No pattern explanations
+- **No other .md files** - no PROJECT_STRUCTURE.md, FINAL_STATUS.md, etc.
+
+### 6. Incremental Development
+- **One file at a time** - never edit multiple files in one response
+- Before coding: "I will now [action] in [filename]"
+- After coding: "Next, I need to [action] in [filename]"
+- Minimal changesets
+- Wait for confirmation before proceeding
+
+### 7. Token Efficiency
+- Concise responses
+- No verbose explanations
+- Code speaks for itself
+- Ask clarifying questions first
+
+## Anti-Patterns
+- Mixed concerns in single files
+- JavaScript "clever" code
+- Premature abstractions
+- Inline styles or CSS-in-JS
+- Multiple types in one file
+- Unnecessary markdown files
+- Large multi-purpose functions
