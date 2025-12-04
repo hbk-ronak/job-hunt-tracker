@@ -4,10 +4,11 @@
   import NoteCard from './note_card.svelte';
   import './notes_board.css';
 
+  export let show_form = false;
+
   let filtered_notes: Note[] = [];
   let selected_tag: string | null = null;
   let all_tags: string[] = [];
-  let show_form = false;
   let editing_note: Note | null = null;
 
   // Form fields
@@ -42,15 +43,14 @@
     tags_input = editing_note.tags.join(', ');
   }
 
-  function open_new_note() {
-    editing_note = null;
-    reset_form();
-    show_form = true;
-  }
-
   function open_edit_note(note: Note) {
     editing_note = note;
     show_form = true;
+  }
+
+  $: if (show_form && !editing_note) {
+    // Form opened from parent (Add button), clear editing state
+    reset_form();
   }
 
   function handle_submit() {
@@ -121,11 +121,6 @@
         </button>
       {/each}
     </div>
-
-    <button class="btn-add-note" on:click={open_new_note}>
-      <span class="material-symbols-rounded">add</span>
-      New Note
-    </button>
   </div>
 
   <div class="notes-grid">

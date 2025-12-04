@@ -13,6 +13,7 @@
   let show_form = false;
   let editing_app: Application | null = null;
   let view_mode: 'kanban' | 'table' | 'notes' = 'kanban';
+  let show_note_form = false;
 
   onMount(() => {
     applications.load();
@@ -20,8 +21,13 @@
   });
 
   function handle_add() {
-    editing_app = null;
-    show_form = true;
+    if (view_mode === 'notes') {
+      // Trigger note form via notes board
+      show_note_form = true;
+    } else {
+      editing_app = null;
+      show_form = true;
+    }
   }
 
   function handle_edit(app: Application) {
@@ -131,7 +137,7 @@
     {:else if view_mode === 'table'}
       <TableView on_edit_app={handle_edit} search_query={search_query} />
     {:else}
-      <NotesBoard />
+      <NotesBoard bind:show_form={show_note_form} />
     {/if}
   </div>
 </main>
