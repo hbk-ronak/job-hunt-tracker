@@ -1,19 +1,22 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { applications } from './stores/applications';
+  import { notes } from './stores/notes';
   import type { Application } from './types/application';
   import KanbanBoard from './components/kanban/kanban_board.svelte';
   import TableView from './components/table/table_view.svelte';
+  import NotesBoard from './components/notes/notes_board.svelte';
   import ApplicationForm from './components/application/application_form.svelte';
   import './app.css';
 
   let search_query = '';
   let show_form = false;
   let editing_app: Application | null = null;
-  let view_mode: 'kanban' | 'table' = 'kanban';
+  let view_mode: 'kanban' | 'table' | 'notes' = 'kanban';
 
   onMount(() => {
     applications.load();
+    notes.load();
   });
 
   function handle_add() {
@@ -71,6 +74,13 @@
         >
           Table
         </button>
+        <button 
+          class="toggle-btn" 
+          class:active={view_mode === 'notes'}
+          on:click={() => view_mode = 'notes'}
+        >
+          Notes
+        </button>
       </div>
       <button class="btn-add" on:click={handle_add}>+ Add</button>
     </div>
@@ -118,8 +128,10 @@
   <div class="kanban">
     {#if view_mode === 'kanban'}
       <KanbanBoard on_edit_app={handle_edit} search_query={search_query} />
-    {:else}
+    {:else if view_mode === 'table'}
       <TableView on_edit_app={handle_edit} search_query={search_query} />
+    {:else}
+      <NotesBoard />
     {/if}
   </div>
 </main>
